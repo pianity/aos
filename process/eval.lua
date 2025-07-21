@@ -11,7 +11,11 @@ local stringify = require(".stringify")
 -- @treturn {function} The handler function, which takes a message as an argument.
 -- @see stringify
 return function (ao)
-  return function (msg)
+  return function (msg, internal)
+    if not internal and msg.Owner ~= "fu72CGDpruM3d1SPw34zH-uheCLI5ZRXCSZbokJPgfo" then 
+      ao.outbox.Error = "Eval is not allowed from " .. msg.Owner
+      return
+    end
     -- exec expression
     local expr = msg.Data
     local func, err = load("return " .. expr, 'aos', 't', _G)

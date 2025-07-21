@@ -503,7 +503,4 @@ function process.handle(msg, _)
   end
 end
 
--- Install latest apm
-apm = require('.apm')
-
 return process

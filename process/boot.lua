@@ -38,10 +38,10 @@ return function (ao)
       return
     end
     if msg.Tags['On-Boot'] == 'Data' then
-      eval(msg)
+      eval(msg, true)
     else
       local loadedVal = drive.getData(msg.Tags['On-Boot'])
-      eval({ Data = loadedVal })
+      eval({ Data = loadedVal }, true)
     end
   end
 end
